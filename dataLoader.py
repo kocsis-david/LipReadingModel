@@ -4,20 +4,18 @@ import os
 import cv2
 import numpy as np
 
+
+def togreyscale(aframes):
+
+    gf = np.zeros((aframes.shape[0], aframes.shape[1], aframes.shape[2],1))
+    for i in range(aframes.shape[0]):
+        gf[i] = cv2.cvtColor(aframes[i], cv2.COLOR_BGR2GRAY).reshape(aframes.shape[1], aframes.shape[2], 1)
+
+    return gf
+
+
 def load_data(dataset_path):
-    """
-    Loads video frames from a dataset directory and prepares them for prediction of directory name.
 
-    Args:
-        dataset_path (str): Path to the dataset directory containing labeled dictionaries.
-        img_height (int, optional): Target image height for resizing (if desired). Defaults to None.
-        img_width (int, optional): Target image width for resizing (if desired). Defaults to None.
-
-    Returns:
-        tuple: A tuple containing the following elements:
-            - X (list): List of NumPy arrays representing video frames for prediction.
-            - Y (list): List of true directory names (labels) corresponding to the frames in X.
-    """
 
     X_train , Y_train , X_valid,Y_valid, X_test, Y_test = [], [], [], [], [], []
 
@@ -42,13 +40,35 @@ def load_data(dataset_path):
                         frames.append(frame)
                     cap.release()
                     if data_type == 'train':
-                        X_train.append(np.array(frames))
+                        aframes = np.array(frames)
+                        split = int((aframes.shape[0]-11)/2)
+                        if (aframes.shape[0] % 2 == 1):
+                            aframes = aframes[split:(aframes.shape[0] - split)]
+                        else:
+                            aframes = aframes[split:(aframes.shape[0] - split - 1)]
+                        gframes = togreyscale(aframes)
+                        X_train.append(gframes)
                         Y_train.append(label_dir)
                     elif data_type == 'val':
-                        X_valid.append(np.array(frames))
+                        aframes = np.array(frames)
+                        split = int((aframes.shape[0] - 11) / 2)
+                        if (aframes.shape[0] % 2 == 1):
+                            aframes = aframes[split:(aframes.shape[0] - split)]
+                        else:
+                            aframes = aframes[split:(aframes.shape[0] - split - 1)]
+                        gframes = togreyscale(aframes)
+                        X_valid.append(gframes)
                         Y_valid.append(label_dir)
                     elif data_type == 'test':
-                        X_test.append(np.array(frames))
+                        aframes = np.array(frames)
+                        split = int((aframes.shape[0] - 11) / 2)
+                        if (aframes.shape[0] % 2 == 1):
+                            aframes = aframes[split:(aframes.shape[0] - split)]
+                        else:
+                            aframes = aframes[split:(aframes.shape[0] - split - 1)]
+
+                        gframes = togreyscale(aframes)
+                        X_test.append(gframes)
                         Y_test.append(label_dir)
 
 
