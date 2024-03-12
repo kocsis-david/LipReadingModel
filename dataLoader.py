@@ -1,3 +1,4 @@
+import tensorflow
 data_src="/Users/koksziszdave/Downloads/lipread_test"
 
 import os
@@ -18,9 +19,12 @@ def load_data(dataset_path):
 
 
     X_train , Y_train , X_valid,Y_valid, X_test, Y_test = [], [], [], [], [], []
-
+    labels = []
+    i=0
     for label_dir in os.listdir(dataset_path):
         label_path = os.path.join(dataset_path, label_dir)
+        labels.append(label_dir)
+        i=i+1
         if not os.path.isdir(label_path):
             continue
         for data_type in ['train', 'val', 'test']:  # Assuming all data in one directory
@@ -48,7 +52,7 @@ def load_data(dataset_path):
                             aframes = aframes[split:(aframes.shape[0] - split - 1)]
                         gframes = togreyscale(aframes)
                         X_train.append(gframes)
-                        Y_train.append(label_dir)
+                        Y_train.append(i-2)
                     elif data_type == 'val':
                         aframes = np.array(frames)
                         split = int((aframes.shape[0] - 11) / 2)
@@ -58,7 +62,7 @@ def load_data(dataset_path):
                             aframes = aframes[split:(aframes.shape[0] - split - 1)]
                         gframes = togreyscale(aframes)
                         X_valid.append(gframes)
-                        Y_valid.append(label_dir)
+                        Y_valid.append(i-2)
                     elif data_type == 'test':
                         aframes = np.array(frames)
                         split = int((aframes.shape[0] - 11) / 2)
@@ -69,7 +73,16 @@ def load_data(dataset_path):
 
                         gframes = togreyscale(aframes)
                         X_test.append(gframes)
-                        Y_test.append(label_dir)
+                        Y_test.append(i-2)
+
+    Y_train = np.array(Y_train).reshape(-1, 1)
+    Y_valid = np.array(Y_valid).reshape(-1, 1)
+    Y_test = np.array(Y_test).reshape(-1, 1)
+
+    nb_classes = len(np.unique(Y_train))
+    Y_train = tensorflow.keras.utils.to_categorical(Y_train, nb_classes)
+    Y_valid = tensorflow.keras.utils.to_categorical(Y_valid, nb_classes)
+    Y_test = tensorflow.keras.utils.to_categorical(Y_test, nb_classes)
 
 
     return X_train , Y_train , X_valid,Y_valid, X_test, Y_test
