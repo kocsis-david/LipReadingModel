@@ -7,3 +7,5 @@ In this project we would like to present an approach for determining spoken word
 The dataset used in this project (LRW) consists short videos of hundreds of people speaking different words.
 Vision transformers (ViTs) are another popular way for visual representation learning. That’s why we would like to consider a way to take advantage of the priors of both models. 
 In order to achieve a better performance we plan detecting the lips in the frames of the videos before training the model. Based on our plans we would like to be inspired from similar architectures, but to use our own ideas and improve it to achieve a similar accuracy. 
+
+Dataset information:https://www.robots.ox.ac.uk/~vgg/data/lip_reading/lrw1.html
