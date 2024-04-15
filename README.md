@@ -12,3 +12,8 @@ In order to achieve a better performance we plan detecting the lips in the frame
 
 ## Dataset information:
 [LRW dataset](https://www.robots.ox.ac.uk/~vgg/data/lip_reading/lrw1.html)
+
+## Setting up the dataset:
+1. Download the dataset from the link above. (You need to register to download the dataset)
+2. Configure the savetocsv.ipynb file to the path of the dataset's dir. And the path to the lipdetecting model .dat file, than run it to save the dataset.
+3. In the testmodels.ipynb file you can load the dataset and load our pretrained model to test it.
