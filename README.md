@@ -15,5 +15,7 @@ In order to achieve a better performance we plan detecting the lips in the frame
 
 ## Setting up the dataset:
 1. Download the dataset from the link above. (You need to register to download the dataset)
-2. Configure the savetocsv.ipynb file to the path of the dataset's dir. And the path to the lipdetecting model .dat file, than run it to save the dataset.
+2. Configure the savetocsv.ipynb file to the path of the dataset's dir. Add the path to the lipdetecting model .dat file, which can be downloaded from the link:
+https://huggingface.co/spaces/asdasdasdasd/Face-forgery-detection/blob/ccfc24642e0210d4d885bc7b3dbc9a68ed948ad6/shape_predictor_68_face_landmarks.dat. 
+3. Run it to save the dataset.
 3. In the testmodels.ipynb file you can load the dataset and load our pretrained model to test it.
