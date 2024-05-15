@@ -13,7 +13,7 @@ In order to achieve a better performance we plan detecting the lips in the frame
 ## Dataset information:
 [LRW dataset](https://www.robots.ox.ac.uk/~vgg/data/lip_reading/lrw1.html)
 
-##Data loading and pre-processing
+## Data loading and pre-processing
 1. Download the dataset from the link above (you need to register to download the dataset) and the pre-trained model file used by the dlib library for facial landmark detection from this link: https://huggingface.co/spaces/asdasdasdasd/Face-forgery-detection/blob/ccfc24642e0210d4d885bc7b3dbc9a68ed948ad6/shape_predictor_68_face_landmarks.dat.
 2. The savetocsv.ipynb file is used for loading, pre-processing the data, which includes detecting the mouth region from every frame of the videos. 
 3. In the savetocsv.ipynb add the path of the dataset's directory and the shape predictor's .dat file's.
