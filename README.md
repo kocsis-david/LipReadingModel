@@ -24,4 +24,5 @@ In order to achieve a better performance we plan detecting the lips in the frame
 1. The final_train.ipynb file contains the presented model architectures.
 2. The data for training can be loaded from the csv files (saved running the savetocsv.ipynb).
 3. Run the file to train, test and evaluate the models.
+4. To reproduce our results you can run the code in the same environment, which is defined in the requirements_final_train.txt file.
 
