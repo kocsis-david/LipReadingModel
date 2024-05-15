@@ -13,14 +13,15 @@ In order to achieve a better performance we plan detecting the lips in the frame
 ## Dataset information:
 [LRW dataset](https://www.robots.ox.ac.uk/~vgg/data/lip_reading/lrw1.html)
 
-## Setting up the dataset:
-1. Download the dataset from the link above. (You need to register to download the dataset)
-2. Configure the savetocsv.ipynb file to the path of the dataset's dir. Add the path to the lipdetecting model .dat file, which can be downloaded from the link:
-https://huggingface.co/spaces/asdasdasdasd/Face-forgery-detection/blob/ccfc24642e0210d4d885bc7b3dbc9a68ed948ad6/shape_predictor_68_face_landmarks.dat. 
-3. Run it to save the dataset.
+##Data loading and pre-processing
+1. Download the dataset from the link above (you need to register to download the dataset) and the pre-trained model file used by the dlib library for facial landmark detection from this link: https://huggingface.co/spaces/asdasdasdasd/Face-forgery-detection/blob/ccfc24642e0210d4d885bc7b3dbc9a68ed948ad6/shape_predictor_68_face_landmarks.dat.
+2. The savetocsv.ipynb file is used for loading, pre-processing the data, which includes detecting the mouth region from every frame of the videos. 
+3. In the savetocsv.ipynb add the path of the dataset's directory and the shape predictor's .dat file's.
+4. Run it to save the processed data to csv files so it can be used for training the models.
+
 
 ## Training the final models:
-Open the final_train.ipynb file where you can load the saved lips and train our architextures.
+1. The final_train.ipynb file contains the presented model architectures.
+2. The data for training can be loaded from the csv files (saved running the savetocsv.ipynb).
+3. Run the file to train, test and evaluate the models.
 
-## Loading the pretrained models:
-Open the evaluatemodels.ipnb file to load our saved models, and try them.
